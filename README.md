@@ -68,8 +68,6 @@ docker-compose up --build
 
 La API estará en:
 - **API**: http://localhost:8000
-- **Docs interactivos**: http://localhost:8000/docs
-- **Redoc**: http://localhost:8000/redoc
 
 ### 3. Desarrollo local (sin Docker)
 
@@ -198,10 +196,3 @@ PORT=8000
 HOST=0.0.0.0
 PUBLIC_URL=http://localhost:8000
 ```
-
-## Recursos
-
-- [FastAPI Docs](https://fastapi.tiangolo.com/)
-- [SQLAlchemy Docs](https://docs.sqlalchemy.org/)
-- [Alembic Docs](https://alembic.sqlalchemy.org/)
-- [Pydantic Docs](https://docs.pydantic.dev/)
