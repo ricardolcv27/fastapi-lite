@@ -1,0 +1,15 @@
+fastapi
+uvicorn[standard]
+SQLAlchemy>=1.4
+asyncpg
+psycopg2-binary
+python-dotenv
+pydantic
+pydantic-settings
+pytest
+pytest-asyncio
+httpx
+alembic
+pydantic[email]
+aiosqlite
+black
