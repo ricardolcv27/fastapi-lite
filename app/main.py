@@ -1,4 +1,5 @@
 import logging
+from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from app.api.api import api_router
 from app.core.config import Settings
@@ -13,26 +14,23 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 settings = Settings()
-app = FastAPI()
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    logger.info("Starting application...")
+    yield
+    logger.info("Shutting down application...")
+    await engine.dispose()
+
+
+app = FastAPI(lifespan=lifespan)
 
 # middlewares
 setup_middlewares(app)
 
 # add routers
 app.include_router(api_router)
-
-
-# startup
-@app.on_event("startup")
-async def on_startup():
-    logger.info("Starting application...")
-
-
-# shutdown
-@app.on_event("shutdown")
-async def on_shutdown():
-    logger.info("Shutting down application...")
-    await engine.dispose()
 
 
 # root endpoint

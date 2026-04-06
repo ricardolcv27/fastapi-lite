@@ -1,7 +1,9 @@
-from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
+    model_config = SettingsConfigDict(env_file=".env")
+
     DATABASE_USER: str = "postgres"
     DATABASE_PASSWORD: str = "postgres"
     DATABASE_DB: str = "postgres"
@@ -11,9 +13,6 @@ class Settings(BaseSettings):
     PORT: int = 8000
     HOST: str = "0.0.0.0"
     PUBLIC_URL: str = "http://localhost:8000"
-
-    class Config:
-        env_file = ".env"
 
     @property
     def database_url(self) -> str:
